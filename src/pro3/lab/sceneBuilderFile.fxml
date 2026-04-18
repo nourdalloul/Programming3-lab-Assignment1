@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Assignment3.projectController">
+    <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Appearance">
+              <items>
+                  <Menu mnemonicParsing="false" text="Font Family">
+                      <items>
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontFamily" text="Arial" />
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontFamily" text="Verdana" />
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontFamily" text="Courier New" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Font Size">
+                      <items>
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontSize" text="12px" />
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontSize" text="16px" />
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontSize" text="20px" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Font Style">
+                      <items>
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontStyle" text="Normal" />
+                          <MenuItem mnemonicParsing="false" onAction="#changeFontStyle" text="Italic" />
+                      </items>
+                  </Menu>
+              </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox spacing="15.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 15;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="1. Applicant Information" underline="true">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: black;" />
+                        <Button mnemonicParsing="false" onAction="#handleUploadImage" text="Upload Image" />
+                     </children>
+                  </VBox>
+                  <GridPane hgap="10.0" vgap="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Full Name:" />
+                        <TextField fx:id="nameField" GridPane.columnIndex="1" />
+                        <Label text="Address:" GridPane.rowIndex="1" />
+                        <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Phone:" GridPane.rowIndex="2" />
+                        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Marital Status:" GridPane.rowIndex="3" />
+                        <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <RadioButton fx:id="singleRadio" mnemonicParsing="false" text="Single">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="maritalStatusGroup" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="marriedRadio" mnemonicParsing="false" text="Married" toggleGroup="$maritalStatusGroup" />
+                              <RadioButton fx:id="divorcedRadio" mnemonicParsing="false" text="Divorced" toggleGroup="$maritalStatusGroup" />
+                           </children>
+                        </HBox>
+                        <Label text="Birthdate:" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="birthDatePicker" prefHeight="31.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 15;">
+                     <children>
+                        <Label text="2. Skills Transfer" underline="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <ListView fx:id="availableSkillsList" prefHeight="150.0" prefWidth="150.0" />
+                              <VBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#moveToSelected" text="&gt;&gt;" />
+                                    <Button mnemonicParsing="false" onAction="#moveToAvailable" text="&lt;&lt;" />
+                                 </children>
+                              </VBox>
+                              <ListView fx:id="selectedSkillsList" prefHeight="150.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 15;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="3. Cover Letter" underline="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#handleUploadCoverLetter" text="Upload Cover Letter" />
+                        <TextArea fx:id="coverLetterArea" prefHeight="150.0" VBox.vgrow="ALWAYS" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Font Size:" />
+                              <Slider fx:id="fontSizeSlider" max="30.0" min="10.0" value="14.0" HBox.hgrow="ALWAYS" />
+                              <ColorPicker fx:id="backgroundColorPicker" onAction="#handleColorChange" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="60.0" spacing="20.0" style="-fx-background-color: #eee;">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #2c3e50; -fx-text-fill: white;" text="SAVE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="statusLabel" text="Status: Ready" textFill="#666666" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
